@@ -38,7 +38,7 @@ for page_num in range(1, 3):
         number.append(player[0].text)
         name.append(player[3].text)
         position.append(player[4].text)
-        age.append(player[5].text)
+        age.append(int(player[5].text))
         nationality.append(player[6].find('img')['alt']) #==player[6].img['alt']
         team.append(player[7].img['alt'])
         market_val.append(player[8].text.strip()) #strip은 빈공간 제거
