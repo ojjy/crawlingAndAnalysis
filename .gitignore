@@ -2,7 +2,7 @@
 /venv/
 /.idea
 /.ipynb_checkpoints/
-*/.ipynb_checkpoints/*
+/.ipynb_checkpoints/*
 /sports/mlb/chromedriver
 
 /sports/mlb/.ipynb_checkpoints/Untitled-checkpoint.ipynb
