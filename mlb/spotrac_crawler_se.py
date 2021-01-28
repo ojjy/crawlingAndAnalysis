@@ -14,12 +14,12 @@ for idx in range(1, 301):
     element = browser.find_element_by_xpath(f"//*[@id='main']/div[1]/div[3]/div/table/tbody/tr[{idx}]")
     print(element.text)
     str = element.text.split("\n")[0]
-    if(str.isdigit()):
+    if(str.isdigit()): # 동률이 없을때, 첫번째값이 순위
         rank.append(element.text.split("\n")[0])
         name.append(element.text.split("\n")[1])
         team.append(element.text.split("\n")[2])
         extra.append(element.text.split("\n")[3])
-    else:
+    else: #동률이 있을때 숫자가 빠지므로 첫번째 값은 이름
         rank.append(rank[idx-2])
         name.append(element.text.split("\n")[0])
         team.append(element.text.split("\n")[1])
