@@ -10,53 +10,68 @@ requests.get(url=url, headers=headers)
 
 """
 
-# 라이브러리 불러오기
-import requests
+if __name__ == "__main__":
+    rank=[]
+    name=[]
+    team=[]
+    extra=[]
+    txt = '1\nMike Trout\nLAA\nCF 29 $37,116,666\n'
+    for i in range(0,2):
+        rank[i] = txt.split("\n")[0]
+        name[i] = txt.split("\n")[1]
+        team[i] = txt.split("\n")[2]
+        extra[i] = txt.split("\n")[3]
+    print(rank[0], name[0], team[0], extra[0])
 
-#User-Agent값 넣기
-headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 \
-(KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'}
 
-#url주소 넣기
-url = "https://www.mlb.com/stats/"
+def basic_crawler():
+    # 라이브러리 불러오기
+    import requests
 
-#get방식으로 소스 요청
-r = requests.get(url=url, headers=headers)
+    #User-Agent값 넣기
+    headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 \
+    (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'}
 
-#status코드가 200인 확인
-print(r.status_code)
+    #url주소 넣기
+    url = "https://www.mlb.com/stats/"
 
-html_docs = requests.get("https://www.mlb.com/stats/", headers=headers)
-print(html_docs.text)
+    #get방식으로 소스 요청
+    r = requests.get(url=url, headers=headers)
 
-from bs4 import BeautifulSoup
-soup = BeautifulSoup(html_docs.text, "html.parser")
-span_set = soup.find_all("span")
+    #status코드가 200인 확인
+    print(r.status_code)
 
-print("############################################")
-print(span_set)
-print(len(span_set))
-print("############################################")
-for span in span_set:
-    print(span.text)
+    html_docs = requests.get("https://www.mlb.com/stats/", headers=headers)
+    print(html_docs.text)
 
-html_docs = html_doc = """<html><head><title>The Dormouse's story</title></head>
-<body>
-<p class="title"><b>The Dormouse's story</b></p>
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html_docs.text, "html.parser")
+    span_set = soup.find_all("span")
 
-<p class="story">Once upon a time there were three little sisters; and their names were
-<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
-<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
-<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
-and they lived at the bottom of a well.</p>
+    print("############################################")
+    print(span_set)
+    print(len(span_set))
+    print("############################################")
+    for span in span_set:
+        print(span.text)
 
-<p class="story">...</p>"""
+    html_docs = html_doc = """<html><head><title>The Dormouse's story</title></head>
+    <body>
+    <p class="title"><b>The Dormouse's story</b></p>
+    
+    <p class="story">Once upon a time there were three little sisters; and their names were
+    <a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+    <a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
+    <a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
+    and they lived at the bottom of a well.</p>
+    
+    <p class="story">...</p>"""
 
-soup = BeautifulSoup(html_docs, "html.parser")
+    soup = BeautifulSoup(html_docs, "html.parser")
 
-# 처음 나오는 p태그 방법1, soup.tag_name 방법2. soup.find('tag_name')
-print(soup.p)
-print(soup.find('p'))
-# 처음 나오는 a태그의 href속성값 가져오기
-print(soup.find('a')['href'])
-print(soup.a['href'])
+    # 처음 나오는 p태그 방법1, soup.tag_name 방법2. soup.find('tag_name')
+    print(soup.p)
+    print(soup.find('p'))
+    # 처음 나오는 a태그의 href속성값 가져오기
+    print(soup.find('a')['href'])
+    print(soup.a['href'])
