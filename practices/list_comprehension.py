@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     normal_start = time.time()
     for x2 in range(0, max_length):
-        list_normal.append(factorial(x2))
+        list_normal[x2] = factorial(x2)
     normal_end = time.time()
 
     print(f"list comprehension: {compre_end-compre_start}, normal: {normal_end-normal_start}")
