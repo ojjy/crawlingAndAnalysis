@@ -2,7 +2,7 @@ from selenium import webdriver
 
 url = "https://www.spotrac.com/mlb/rankings/"
 
-browser = webdriver.Chrome("chromedriver")
+browser = webdriver.Chrome("/Users/yjjo/workspaces/crawlingAndAnalysis")
 browser.get(url)
 player_num=547
 rank=[]
